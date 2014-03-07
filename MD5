@@ -1,4 +1,4 @@
-053205fd7e137d4dfa52abd944171140 *DESCRIPTION
+6020dc0639906de2047bee52e22dd50f *DESCRIPTION
 98672089cd0de1b7877590d70d29db99 *NAMESPACE
 d20e2536df159b135910539829ad1c9d *R/BAMMtools-internal.R
 7931f12b02e4efeb9c01b469eca69b37 *R/addBAMMshifts.R
@@ -24,7 +24,6 @@ f5430311f8c94760f2996c1c13a4def6 *R/cumulativeShiftProbsTree.R
 e19b5b8d1746cb1f5a14a97885f0676d *R/getEventData.R
 6d95810cf7823e4352a1fe6ff4b44e29 *R/getMarginalBranchRateMatrix.R
 e48694ca713a99dffa29dad623193ba3 *R/getMeanBranchLengthTree.R
-a4e23750781389ccb5f947286a252ab7 *R/getMeanTipRateStates.R
 cc5fd1d2f1654421435c312fc1ec9ec0 *R/getPathToRoot.R
 3de4c19a21a08928d8542951b36e8955 *R/getRateThroughTimeMatrix.R
 0b3ae5dbd09d517cbd6b76855a065a63 *R/getRecursiveSequence.R
@@ -32,6 +31,7 @@ cc5fd1d2f1654421435c312fc1ec9ec0 *R/getPathToRoot.R
 7afb8a38d0403904b4c8313870f754b1 *R/getShiftNodesFromIndex.R
 270a14ca850f02f9e2d302d199bc5de0 *R/getSpanningTaxonPair.R
 0f8573d760f2ed9f450ee0d3667f25ec *R/getStartStopTimes.R
+14dcb9fd640285633443bfc44fa1d503 *R/getTipRates.R
 daf9c480426d0357075c939f5db07b1f *R/getmrca.R
 618d603ef55c26f80ae4b7975aef3294 *R/inv.logit.R
 8f1ff6b7910c7e8f9c2c61bfb56ba57b *R/logit.R
@@ -43,7 +43,7 @@ eea2d2fabe9277ec97e8758a5bade8d3 *R/phylogeneticMean.R
 a319d7859a42aec23f89c3f36d0367ff *R/plot.bammdata.R
 47eb57d388ec8366ba08093e67d3606f *R/plot.bammshifts.R
 551ab01ea22e4627a6ec307053cb3b55 *R/plot.credibleshiftset.R
-5ad3f3bb128d0dd8ac115f8e8de0844b *R/plotRateThroughTime.R
+5c4f1ed9c3b5411dc88370e3a0fc0316 *R/plotRateThroughTime.R
 7f52150cf825a24b23f803bc66951b9d *R/print.bammdata.R
 f7d4a16ab60d7d8976a83fbc09b6c987 *R/print.branchprior.R
 b9c867db26f7fc3e0819d8d9939917df *R/print.credibleshiftset.R
@@ -62,7 +62,7 @@ f8f7a8bb7ddaffa617910502534c1597 *R/subsetEventData.R
 0b2f0fdbeb629173dd5f1a07ab70b44c *R/summary.branchprior.R
 e328538b032706a06f59c8ef8f0d8215 *R/summary.credibleshiftset.R
 6eaebe9570735b8cf1acc2dfea8ede41 *R/timeIntegratedBranchRate.R
-7d5d77d3f3c866e7067e7b0be49f5621 *R/transparentColor.R
+a9048048296e66e381e0638ba94ef8b0 *R/transparentColor.R
 9f08b0b7918afcfbe448362995e2e40c *data/events.primates.rda
 14dc623acea4506c3144e1dc5e8eb856 *data/events.whales.rda
 68a8cefba1e34da002fe953539f0d103 *data/mass.primates.rda
@@ -89,15 +89,15 @@ b1b75df6b089ecd714d67115c200d990 *man/getCohortMatrix.Rd
 42f36a95322aeb28f08aa16c676d9126 *man/getEventData.Rd
 ceefbadcf9e76433dff446ec6ae7b4db *man/getMarginalBranchRateMatrix.Rd
 d0e5616955b6c5123db1ddb8e712006c *man/getMeanBranchLengthTree.Rd
-44c7c519ed1c0258a564edd234d7315e *man/getMeanTipRateStates.Rd
 2def3330d5a89ec7db55d33e22a50b7a *man/getRateThroughTimeMatrix.Rd
 c634ff1fef731fa27c4a1d42791a8ea0 *man/getShiftNodesFromIndex.Rd
+806adc93038689e7dd57987535d7da94 *man/getTipRates.Rd
 4e2f81bbca7bb92c5e0584479640795f *man/getmrca.Rd
 56b0ad1503bae77ad00f4405f02cfe15 *man/maximumShiftCredibility.Rd
 e3583420a003b68d497b0adfed0131cc *man/plot.bammdata.Rd
 3d3567078b5a3e30e3c6ef2d6689b7f8 *man/plot.bammshifts.Rd
 df27d80e2058bcc96675a3dc0c5f1228 *man/plot.credibleshiftset.Rd
-7741dca78653b902a28b979cbe0185ea *man/plotRateThroughTime.Rd
+6422e13bee447bf29134698f52c09b89 *man/plotRateThroughTime.Rd
 836e39b2f038b1acff510d636f681b3d *man/samplingProbs.Rd
 ffeea7b7058d79d50dabcceef2b97332 *man/setBAMMpriors.Rd
 32a569c273f616082bfe24be9aee2b14 *man/speciesByRatesMatrix.Rd
@@ -106,5 +106,5 @@ ffeea7b7058d79d50dabcceef2b97332 *man/setBAMMpriors.Rd
 f6ccc040be280f726c30bf25ae99d7c8 *man/summary.bammdata.Rd
 04b221bc38a4e8e776e19a461f7d9a77 *man/summary.branchprior.Rd
 b279a64ffeac7686a4ac89f2eee55f49 *man/summary.credibleshiftset.Rd
-0d2e81e183421ea75400685a819d4822 *src/dtrates.c
+5eefe99082d44336cb7b7fcf14ee7d4f *src/dtrates.c
 b8944cfbb74f1d1de89fed9f0fc477e7 *src/treetraverse.c
