@@ -8,7 +8,7 @@ void rootward(int * anc, int * desc, int * node, int * nnode, int * ndorder);
 void tipward(int * anc, int * desc, int * node, int * nnode, int * ndorder);
 void recursivesequence(int * anc, int * desc, int * node, int * ne, int * downseq, int * lastvisit);
 void setpolartreecoords(int * anc, int * desc, int * ndorder, int * ntip, int * rootnd, int * nnode, double * ths, double * theta, double * root);
-void setphylotreecoords(int * anc, int * desc, int * ndorder, double * bl, int * ntip, int * rootnd, int * nnode, double * bar, double * xy, double * root);
+void setphylotreecoords(int * anc, int * desc, int * ndorder, double * begin, double * bl, int * ntip, int * rootnd, int * nnode, double * bar, double * xy, double * root);
 void fetchmrca(int * anc, int * desc, int * root, int * ne, int * npair, int * t1, int * t2, int * ret);
 SEXP seq_root2tip(SEXP edge, SEXP nbtip, SEXP nbnode); 
 
@@ -150,27 +150,34 @@ void setpolartreecoords(int * anc, int * desc, int * ndorder, int * ntip, int * 
 	Free(ci);
 }
 
-void setphylotreecoords(int * anc, int * desc, int * ndorder, double * bl, int * ntip, int * rootnd, int * nnode, double * bar, double * xy, double * root) {
+void setphylotreecoords(int * anc, int * desc, int * ndorder, double * begin, double * bl, int * ntip, int * rootnd, int * nnode, double * bar, double * xy, double * root) {
 	int i, j, d, ne = *nnode - 1;
-	double dy = 1./(*ntip);
+	//double dy = 1./(*ntip);
 	int * ci;
 	ci = Calloc(2, int);
+	
+	int cntr = 0;
 	
 	for (i = 0; i < *nnode; i++) {
 		d = 0;
 		if (ndorder[i] <= *ntip) {
 			for (j = 0; j < ne; j++) {
 				if (desc[j] == ndorder[i]) {
-					xy[j + ne * 0] = 1. - bl[j];
-					xy[j + ne * 1] = (ndorder[i] - 1) * dy;
-					xy[j + ne * 2] = 1.;
-					xy[j + ne * 3] = (ndorder[i] - 1) * dy;
+					//xy[j + ne * 0] = 1. - bl[j];
+					//xy[j + ne * 1] = (ndorder[i] - 1) * dy;
+					xy[j + ne * 0] = begin[j] - bl[j];
+					xy[j + ne * 1] = cntr;
+					//xy[j + ne * 2] = 1.;
+					xy[j + ne * 2] = begin[j];
+					//xy[j + ne * 3] = (ndorder[i] - 1) * dy;
+					xy[j + ne * 3] = cntr;
 					
 					bar[j + ne * 0] = 0.;
 					bar[j + ne * 1] = 0.;
 					bar[j + ne * 2] = 0.;
 					bar[j + ne * 3] = 0.;
-
+					
+					cntr++;
 					break;
 				}
 			}

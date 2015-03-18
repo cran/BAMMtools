@@ -7,10 +7,23 @@ getEventData <- function(phy, eventdata, burnin=0, nsamples = NULL, verbose=FALS
 	phy$node.label <- NULL;
 	
 	if (any(is.null(c(phy$begin, phy$end)))) {
-		phy = getStartStopTimes(phy);
+		phy <- getStartStopTimes(phy)
 	}
-		
-	bt <- branching.times(phy);
+	
+# Getting branching times direct from
+#		the begin and end components of phy
+#		should be able to now handle non-ultrametric trees.
+	
+	maxbt <- max(phy$end)
+	nodes <- (length(phy$tip.label) + 1):(2*length(phy$tip.label) - 1)
+	bt <- numeric(length(nodes))
+	names(bt) <- nodes
+	for (i in 1:length(bt)){
+		tt <- phy$begin[phy$edge[,1] == nodes[i]][1]
+		bt[i] <- maxbt - tt
+	}
+	
+	########
 	
 	if (class(eventdata) == 'data.frame') {
 		cat("Processing event data from data.frame\n");
@@ -83,7 +96,7 @@ getEventData <- function(phy, eventdata, burnin=0, nsamples = NULL, verbose=FALS
 	
  	meanTipLambda <- numeric(length(phy$tip.label)); 
  
- 	stoptime <- max(branching.times(phy));
+ 	stoptime <- maxbt;
  	
  	for (i in 1:length(goodsamples)) {
   		tmpEvents <- x2[x2[,1] == goodsamples[i], ];
@@ -133,7 +146,9 @@ getEventData <- function(phy, eventdata, burnin=0, nsamples = NULL, verbose=FALS
 
  		tmpEventSegMat <- matrix(0, nrow=(max(phy$edge) + nrow(dftemp) - 2), ncol=4);
  		
-		non.root <- c(1:length(phy$tip.label), (length(phy$tip.label)+2):max(phy$edge));
+		#non.root <- c(1:length(phy$tip.label), (length(phy$tip.label)+2):max(phy$edge));
+		non.root <- c(1:length(phy$tip.label), unique(phy$edge[,1]));
+		non.root <- non.root[-match(length(phy$tip.label)+1, non.root)];
 		pos <- 1;	
 		
 		is_noEventBranch = !(phy$edge[,2] %in% dftemp$node);

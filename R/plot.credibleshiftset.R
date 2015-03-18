@@ -1,4 +1,4 @@
-plot.credibleshiftset <- function(x, plotmax=9, method='phylogram', pal = 'RdYlBu', spex = "s", add.freq.text = TRUE, use.plot.bammdata = TRUE, border = TRUE, legend = FALSE, send2pdf = FALSE, ...)
+plot.credibleshiftset <- function(x, plotmax=9, method='phylogram', pal = 'RdYlBu', shiftColor = 'black', spex = "s", add.freq.text = TRUE, use.plot.bammdata = TRUE, border = TRUE, legend = FALSE, send2pdf = FALSE, logcolor=FALSE, breaksmethod='linear', color.interval=NULL, JenksSubset=20000, ...)
 {
 	if (class(x) != "credibleshiftset") {
 		stop('arg x must be of class "credibleshiftset"');
@@ -55,13 +55,13 @@ plot.credibleshiftset <- function(x, plotmax=9, method='phylogram', pal = 'RdYlB
 	cat("Omitted", max(x$number.distinct,mm) - min(x$number.distinct,mm), "plots\n");
 	if (use.plot.bammdata) {
     	cset.bamm <- dtRates(cset.bamm, 0.01);
-	    colorbreaks <- assignColorBreaks(cset.bamm$dtrates$rates,spex=spex);
+	    colorbreaks <- assignColorBreaks(cset.bamm$dtrates$rates,spex=spex, logcolor=logcolor, method=breaksmethod, JenksSubset=JenksSubset);
 	}
 	for (i in 1:mm) {
 	    sed <- subsetEventData(cset.bamm, index=x$indices[[i]]);
 		par(mar = c(2,2,2,2));
 		if (use.plot.bammdata) {
-            plot.bammdata(sed, method=method, pal=pal, spex=spex, colorbreaks=colorbreaks, par.reset=FALSE, ...);
+            plot.bammdata(sed, method=method, pal=pal, spex=spex, colorbreaks=colorbreaks, par.reset=FALSE, logcolor=logcolor, ...);
 		}
 		else {
 		    if (method=="polar") method = "fan";
@@ -71,37 +71,39 @@ plot.credibleshiftset <- function(x, plotmax=9, method='phylogram', pal = 'RdYlB
 		if (border) box();
 		#shiftnodes <- getShiftNodesFromIndex(cset.bamm, i);
 		shiftnodes <- x$shiftnodes[[i]];
-		shiftnode_parents <- cset.bamm$edge[match(shiftnodes, cset.bamm$edge[,2],nomatch=0), 1];
-	    root <- (shiftnode_parents == (cset.bamm$Nnode + 2));
-    	if (sum(root) > 0) {
-        	isShiftNodeParent <- integer(length(shiftnodes));
-        	isShiftNodeParent[root] <- 1;
-        	isShiftNodeParent[!root] <- sed$eventVectors[[1]][match(shiftnode_parents[!root], cset.bamm$edge[,2])];
-    	} 
-    	else {
-    	    isShiftNodeParent <- sed$eventVectors[[1]][match(shiftnode_parents, cset.bamm$edge[,2])];
-    	}
-    	isShiftNode <- match(shiftnodes, sed$eventData[[1]]$node);
-    	time <- sed$eventData[[1]][isShiftNode, 2] - sed$eventData[[1]][isShiftNodeParent, 2];
-    	if (spex == "s") {
-    		lam1 <- sed$eventData[[1]][isShiftNodeParent, 3]; 
-    		lam2 <- sed$eventData[[1]][isShiftNodeParent, 4];
-    	    AcDc <- exponentialRate(time, lam1, lam2) > sed$eventData[[1]][isShiftNode, 3];	
-    	}
-    	else if (spex == "e") {
-    		mu1 <- sed$eventData[[1]][isShiftNodeParent, 5]; 
-    		mu2 <- sed$eventData[[1]][isShiftNodeParent, 6];
-    		AcDc <- exponentialRate(time, mu1, mu2) > sed$eventData[[1]][isShiftNode, 5];
-    	}
-    	else {
-    		lam1 <- sed$eventData[[1]][isShiftNodeParent, 3]; 
-    		lam2 <- sed$eventData[[1]][isShiftNodeParent, 4];
-    		mu1 <- sed$eventData[[1]][isShiftNodeParent, 5]; 
-    		mu2 <- sed$eventData[[1]][isShiftNodeParent, 6];
-    		AcDc <- (exponentialRate(time, lam1, lam2)-exponentialRate(time, mu1, mu2)) > (sed$eventData[[1]][isShiftNode, 3]-sed$eventData[[1]][isShiftNode, 5]);
-   		}
-    	bg <- rep("blue", length(AcDc));
-    	bg[which(AcDc == FALSE)] <- "red";
+		# shiftnode_parents <- cset.bamm$edge[match(shiftnodes, cset.bamm$edge[,2],nomatch=0), 1];
+	 #    root <- (shiftnode_parents == (cset.bamm$Nnode + 2));
+  #   	if (sum(root) > 0) {
+  #       	isShiftNodeParent <- integer(length(shiftnodes));
+  #       	isShiftNodeParent[root] <- 1;
+  #       	isShiftNodeParent[!root] <- sed$eventVectors[[1]][match(shiftnode_parents[!root], cset.bamm$edge[,2])];
+  #   	} 
+  #   	else {
+  #   	    isShiftNodeParent <- sed$eventVectors[[1]][match(shiftnode_parents, cset.bamm$edge[,2])];
+  #   	}
+  #   	isShiftNode <- match(shiftnodes, sed$eventData[[1]]$node);
+  #   	time <- sed$eventData[[1]][isShiftNode, 2] - sed$eventData[[1]][isShiftNodeParent, 2];
+  #   	if (spex == "s") {
+  #   		lam1 <- sed$eventData[[1]][isShiftNodeParent, 3]; 
+  #   		lam2 <- sed$eventData[[1]][isShiftNodeParent, 4];
+  #   	    AcDc <- exponentialRate(time, lam1, lam2) > sed$eventData[[1]][isShiftNode, 3];	
+  #   	}
+  #   	else if (spex == "e") {
+  #   		mu1 <- sed$eventData[[1]][isShiftNodeParent, 5]; 
+  #   		mu2 <- sed$eventData[[1]][isShiftNodeParent, 6];
+  #   		AcDc <- exponentialRate(time, mu1, mu2) > sed$eventData[[1]][isShiftNode, 5];
+  #   	}
+  #   	else {
+  #   		lam1 <- sed$eventData[[1]][isShiftNodeParent, 3]; 
+  #   		lam2 <- sed$eventData[[1]][isShiftNodeParent, 4];
+  #   		mu1 <- sed$eventData[[1]][isShiftNodeParent, 5]; 
+  #   		mu2 <- sed$eventData[[1]][isShiftNodeParent, 6];
+  #   		AcDc <- (exponentialRate(time, lam1, lam2)-exponentialRate(time, mu1, mu2)) > (sed$eventData[[1]][isShiftNode, 3]-sed$eventData[[1]][isShiftNode, 5]);
+  #  		}
+  #   	bg <- rep("blue", length(AcDc));
+  #   	bg[which(AcDc == FALSE)] <- "red";
+
+  		bg <- rep(shiftColor, length(shiftnodes));
 		cex <- 0.75 + 5 * x$marg.probs[as.character(shiftnodes)];
 		if (use.plot.bammdata) {
 			cex <- cex[match(sed$eventData[[1]]$node, shiftnodes, nomatch=0)];
