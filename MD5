@@ -1,4 +1,4 @@
-ecd10d295def21115df6fea3937144d3 *DESCRIPTION
+9b89f39bed78956ee020b758f4ed229f *DESCRIPTION
 ea442abf5802fca070183620291e73ac *NAMESPACE
 d20e2536df159b135910539829ad1c9d *R/BAMMtools-internal.R
 543484729e4c2a4c3b35f29c00fbf23b *R/NU.branching.times.R
@@ -10,7 +10,7 @@ a38d5ecc904d59c99bd0603fd997098a *R/areShiftSetsEqual.R
 12607dd9cb8633128f4ec98c9a8dd5f6 *R/as.bammdata.R
 6d88a1a9363cb6307edb789347352032 *R/as.phylo.bammdata.R
 70839c99ba80e95bb94cd937f32f58c4 *R/as.phylo.branchprior.R
-547215d1fb5f82263777858ed9b0a56e *R/assignColorBreaks.R
+f41d519c5d53790fc6f367e4426b3cf0 *R/assignColorBreaks.R
 fec3bc3e0a452d82d222bd81766d15b7 *R/bammcolors.R
 4b80cc858dda24602e1ed7a30b9ee825 *R/barLegend.R
 9bb40ea92117e8151b0f33a90a514db4 *R/bayesFactorBranches.R
@@ -49,9 +49,9 @@ bcc0037a4f28b3fb2e0e6363a7be3049 *R/maximumShiftCredibility.R
 e16d449321ee26bc8fc9436930a8995e *R/mkdtsegsPhylo.R
 e1da57910a5fb4972cd4dddbc03eab39 *R/mkdtsegsPolar.R
 eea2d2fabe9277ec97e8758a5bade8d3 *R/phylogeneticMean.R
-ecd46ab76b3c7d6c7b0fc211e4f69cb9 *R/plot.bammdata.R
-05b0ca1d8e41bf844c98c83aa2031467 *R/plot.bammshifts.R
-266d6a3da3e9fb4e9c6be115c7ce60d6 *R/plot.credibleshiftset.R
+049fa5d78d5cc671c4a8cb91d4d53542 *R/plot.bammdata.R
+6046fc14b71c05b4bf9fd31ad0a28963 *R/plot.bammshifts.R
+a134617e1ed370b8331aae5dab002984 *R/plot.credibleshiftset.R
 38125daceea61857e312e41785a620b9 *R/plotRateThroughTime.R
 67e8e6b3f70e5cd8d4c46211ca85261e *R/print.bammdata.R
 f7d4a16ab60d7d8976a83fbc09b6c987 *R/print.branchprior.R
@@ -64,7 +64,7 @@ a6f654afef98c5a6cc9a10af887064dd *R/segMap.R
 3abe9808e961b2f77ea50603467c1549 *R/setBAMMpriors.R
 b868796cd7ddd0db15bc0b7fe7d19da2 *R/setPhyloTreeCoords.R
 3af600912ba356d4d20fd68b4d87eb44 *R/setPolarTreeCoords.R
-659d79070c8f8c80b62603dde84af37a *R/speciesByRatesMatrix.R
+b527d9f6d07e9ffd43bd6abbd9adbd90 *R/speciesByRatesMatrix.R
 552efe1eaa120ffdb523e558184ad975 *R/subsetEventData.R
 dea17a1eb79feaac99d8896d52a368bf *R/subtreeBAMM.R
 050996e39e4d2a4e1ab93fbc8bf62d13 *R/summary.bammdata.R
@@ -93,7 +93,7 @@ e42bd6a2f4820d7e8b73f78a9ed35943 *man/BAMMtools-package.Rd
 dd9bc54aa0159c8382c42873da0a9164 *man/ShiftProbsTree.Rd
 4e97ab74967aa473e4999b652523cf32 *man/addBAMMlegend.Rd
 e8e80d497b9812a066cfe97d4fd5b2ca *man/addBAMMshifts.Rd
-39d5ba1ef72515886e883bb067b9a5f8 *man/assignColorBreaks.Rd
+180562e14e318ae72b55cff98030e779 *man/assignColorBreaks.Rd
 24b53be09ac7b6a23e5235db46357c6d *man/bayesFactorBranches.Rd
 4873aa11f81accd2503fc6a964510d1f *man/cohorts.Rd
 5a2918f94f5e0792caed413ef76fc876 *man/computeBayesFactors.Rd
@@ -113,13 +113,13 @@ c634ff1fef731fa27c4a1d42791a8ea0 *man/getShiftNodesFromIndex.Rd
 806adc93038689e7dd57987535d7da94 *man/getTipRates.Rd
 4e2f81bbca7bb92c5e0584479640795f *man/getmrca.Rd
 56b0ad1503bae77ad00f4405f02cfe15 *man/maximumShiftCredibility.Rd
-1e7952d9e5aa7c13ccdd3673741aaf08 *man/plot.bammdata.Rd
-363f5488393d058d016475db761f1117 *man/plot.bammshifts.Rd
-aae4294ae82c71712892caae43ce7984 *man/plot.credibleshiftset.Rd
+43e933881ff4478a9dd662628e1a981b *man/plot.bammdata.Rd
+783eaebb5d42a6aef6dffffe915db1d4 *man/plot.bammshifts.Rd
+e4a91accc345272a8248a4296936930c *man/plot.credibleshiftset.Rd
 d666c362e230c4282324273870a01d4f *man/plotRateThroughTime.Rd
 67581456f237bd2a4a34705b5a4bc954 *man/samplingProbs.Rd
 055873cb7209bea55b4118c798af0a94 *man/setBAMMpriors.Rd
-77d2069acd9e7370e55dd5a4ca4d1832 *man/speciesByRatesMatrix.Rd
+dcde6bcd1cc398e021bbbeb21ca6d865 *man/speciesByRatesMatrix.Rd
 5149de0aca65a0e852fba708ef9fab40 *man/subsetEventData.Rd
 7c1d8aa49e45a43a3e644913d9bcee08 *man/subtreeBAMM.Rd
 31c6a7c378a940851a28d04bba3829a3 *man/summary.bammdata.Rd
@@ -130,5 +130,5 @@ e84ae53cad63ad7f430e7250dd10437a *man/traitDependentBAMM.Rd
 c0eb206e6869c0aaad9a56fb1acb7282 *man/writeEventData.Rd
 163c1c799f50b44886d9d1a8f97cdfd7 *src/cohort_matrix.c
 5eefe99082d44336cb7b7fcf14ee7d4f *src/dtrates.c
-6b8c478b544a0da5d69fd12ebe50e307 *src/jenksBrks.c
+16bc6cd0ee25afe4b842a16c1ce6d70e *src/jenksBrks.c
 3f21d3a7abe2f1192f0f765dabab446d *src/treetraverse.c
