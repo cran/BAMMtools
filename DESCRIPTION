@@ -2,8 +2,8 @@ Package: BAMMtools
 Type: Package
 Title: Analysis and Visualization of Macroevolutionary Dynamics on
         Phylogenetic Trees
-Version: 2.1.0
-Date: 2015-11-09
+Version: 2.1.1
+Date: 2016-03-02
 Author: Dan Rabosky, Mike Grundler, Pascal Title, Carlos Anderson, Jeff Shi, Joseph Brown, Huateng Huang, Jon Mitchell
 Maintainer: Pascal Title <ptitle@umich.edu>
 Imports: methods
@@ -13,6 +13,6 @@ License: GPL (>= 2)
 URL: http://www.bamm-project.org
 NeedsCompilation: yes
 Suggests: parallel
-Packaged: 2015-11-09 22:02:53 UTC; pascaltitle
+Packaged: 2016-03-03 02:03:10 UTC; pascaltitle
 Repository: CRAN
-Date/Publication: 2015-11-10 09:41:21
+Date/Publication: 2016-03-03 05:49:49

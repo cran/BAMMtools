@@ -1,5 +1,6 @@
 \name{traitDependentBAMM}
 \alias{traitDependentBAMM}
+\alias{strapp}
 
 \title{
 STRAPP: STructured Rate Permutations on Phylogenies
@@ -42,12 +43,14 @@ a logical, used for cotinuous trait data. If \code{TRUE}, perform a two tailed s
 a character string specifying the direction of correlation for the alternative hypothesis. For continuous traits, it must be either "positive" or "negative"; only the initial letter is needed. For binary traits, it must be a string indicating states with increasing rate under the alternative hypothesis, separated by comma (e.g., 'A, B'). One-tailed test for categorical data with more than two states is not supported.
   }
   	\item{nthreads}{
-number of threads to use for parallelization of the function. The R package \code{snow} must be loaded for \code{nthreads > 1}.
+number of threads to use for parallelization of the function. The R package \code{parallel} must be loaded for \code{nthreads > 1}.
   	}
 }
 
 \details{
 Tip rates-- speciation, extinction or net diversification rates-- are permuted in a way such that pairwise covariances in rates between species are maintained. That is, tips with the same \code{tipStates} still have the same rate after permutation. Posterior samples are randomly selected with replacement from the \code{bammdata} object, so \code{reps} could be smaller or larger than the total number of samples in the object.
+
+This function expects that the bamm-data object and the trait data have the same taxon set. It may be necessary to subset the trait data and/or run \code{\link{subtreeBAMM}} on the bamm-data object in order to meet this requirement. 
 }
 \value{
   \item{estimate}{
@@ -77,6 +80,8 @@ a numeric vector. The null distribution of correlation coefficients (or centered
 }
 \references{
 \url{bamm-project.org}
+
+Rabosky, D. L. and Huang, H., 2015. A Robust Semi-Parametric Test for Detecting Trait-Dependent Diversification. Systematic Biology 65: 181-193.
 
 Rabosky, D. L. 2014. Automatic detection of key innovations, rate shifts, and diversity-dependence on phylogenetic trees. PLoS ONE 9:e89543
 

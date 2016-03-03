@@ -42,24 +42,20 @@ traitDependentBAMM <- function(ephy, traits, reps, rate = 'speciation', return.f
 			stop("Please load package 'parallel' for using the multi-thread option\n");
 		}
 	}
-	ratetype.option<-c("speciation", "extinction", "net diversification");
-	ratetype <- ratetype.option[grep(paste("^", rate, sep = ''), ratetype.option,ignore.case = TRUE, perl = TRUE)];
+	ratetype.option <- c("speciation", "extinction", "net diversification");
+	ratetype <- ratetype.option[grep(paste("^", rate, sep = ''), ratetype.option, ignore.case = TRUE, perl = TRUE)];
   if (length(ratetype) == 0) {
     stop("Rate must be one of 'speciation', 'extinction', or 'net diversification', only the initial letter is needed\n")
   }
   
-  if (ratetype == "net diversification" & logrates == TRUE) {
-    cat("WARNING: Net diversification might be negative and logged rates would then produce NaNs.\n");
-  }
-  
-	if (sum(! names(traits) %in% ephy$tip.label) > 0) {
-		cat("ignored taxa with trait but not in the bammdata object\n");
-		traits <- traits[names(traits) %in% ephy$tip.label];
-		if (length(traits) == 0) {
-			stop("none of the taxa with trait data is in the bammdata object\n");
-		}
+	if (ratetype == "net diversification" & logrates == TRUE) {
+		cat("WARNING: Net diversification might be negative and logged rates would then produce NaNs.\n");
 	}
-
+	
+	# check if species in ephy and traits match
+	if (!identical(sort(names(traits)), sort(ephy$tip.label))) {
+		stop('Species names in the bamm-data object and trait data are not identical. You may want to run subtreeBAMM and subset the trait data in order to reduce the two datasets to a common taxon set.')
+	}
 
 	method.option <- c("spearman",  "pearson", "mann-whitney", "kruskal");
 	method <- method.option[grep(paste("^", method, sep = ''), method.option, ignore.case = TRUE)];
@@ -69,12 +65,12 @@ traitDependentBAMM <- function(ephy, traits, reps, rate = 'speciation', return.f
 
 	# check if the trait is right class
 
-	if (method == 'spearman' | method=="pearson") {
+	if (method == 'spearman' | method == "pearson") {
 		if (! is.numeric(traits)){
 			cat(paste("selected ", method, ", but the trait is not numeric, converted the trait into a numeric vector\n",sep=''));
 			traits <- as.numeric(traits);
 		}
-	} else if (method =="mann-whitney"| method=="kruskal") {
+	} else if (method == "mann-whitney"| method == "kruskal") {
       
 		if (length(unique(traits[! is.na(traits)])) == 1) {
 			stop(paste("selected ", method, ", but the trait only has one level\n", sep = ''));
@@ -118,13 +114,13 @@ traitDependentBAMM <- function(ephy, traits, reps, rate = 'speciation', return.f
 			}
 		}
 	}
-  if (ratetype == 'speciation') {
-	  tiprates <- ephy$tipLambda;
-  } else if (ratetype == "extinction") {
-    tiprates <- ephy$tipMu;
-  } else {
-    tiprates <- lapply(1:length(ephy$tipLambda), function(i) {ephy$tipLambda[[i]] - ephy$tipMu[[i]]});
-  }
+	if (ratetype == 'speciation') {
+		tiprates <- ephy$tipLambda;
+	} else if (ratetype == "extinction") {
+		tiprates <- ephy$tipMu;
+	} else {
+		tiprates <- lapply(1:length(ephy$tipLambda), function(i) {ephy$tipLambda[[i]] - ephy$tipMu[[i]]});
+	}
 	tipstates <- ephy$tipStates;
 	#tiprates <- tiprates[ephy$tip.label];
 	traits <- traits[ephy$tip.label];
@@ -133,7 +129,7 @@ traitDependentBAMM <- function(ephy, traits, reps, rate = 'speciation', return.f
 		trait.stat.count <- table(traits);
 		trait.stat.count <- trait.stat.count[! is.na(names(trait.stat.count))];
 		stat.mu <- prod(trait.stat.count) / 2;
-  }
+	}
 
 	if (logrates) {
 		tiprates <- lapply(1:length(tiprates), function(x){ log(tiprates[[x]]) });
@@ -244,14 +240,20 @@ traitDependentBAMM <- function(ephy, traits, reps, rate = 'speciation', return.f
 	if (method == "spearman" | method == "pearson") {
 		obj <- list(estimate = mean(as.numeric(obs)), p.value = pval, method = method, two.tailed = two.tailed);
 	} else {
-		ave.tiprate <- getTipRates(ephy)$lambda.avg;
+		if (ratetype == 'speciation') {
+			ave.tiprate <- getTipRates(ephy)$lambda.avg;
+		} else if (ratetype == 'extinction') {
+			ave.tiprate <- getTipRates(ephy)$mu.avg;
+		} else {
+			ave.tiprate <- getTipRates(ephy)$lambda.avg - getTipRates(ephy)$mu.avg;
+		}
 		l <- lapply(unique(traits[! is.na(traits)]), function(x) {
 			median(ave.tiprate[which(traits == x)], na.rm = TRUE);
 		});
 		names(l) <- as.character(unique(traits[! is.na(traits)]));
 		obj <- list(estimate = l, p.value = pval, method = method, two.tailed = two.tailed);
 	}
-  obj$rate <- ratetype;
+	obj$rate <- ratetype;
 	if (return.full) {
 		obj$obs.corr <- as.numeric(obs);
 		obj$gen <- gen;
@@ -260,61 +262,4 @@ traitDependentBAMM <- function(ephy, traits, reps, rate = 'speciation', return.f
 
 	return(obj);
 }
-
-# traitDependentBAMM <- function(ephy, traits, reps=1000, return.null=FALSE, method='spearman', logrates=T, two.tailed = TRUE){
-#
-# 	tiprates <- getTipRates(ephy)$lambda.avg;
-#
-# 	if (length(intersect(names(traits), ephy$tip.label)) != length(traits)){
-# 		stop("names of trait vector and taxa in bammdata object must match\n")
-# 	}
-# 	traits <- traits[ephy$tip.label];
-# 	tiprates <- tiprates[ephy$tip.label];
-#
-# 	if (logrates){
-# 		tiprates <- log(tiprates);
-# 	}
-#
-# 	obs <- cor.test(tiprates, traits, method=method);
-# 	bootreps <- permuteTipRates(ephy, reps=reps);
-# 	if (logrates){
-# 		bootreps$tipLambda <- log(bootreps$tipLambda);
-# 	}
-#
-# 	nullvec <- numeric(reps);
-# 	for (i in 1:reps){
-# 		nullvec[i] <- cor.test(bootreps$tipLambda[,i], traits, method=method)$estimate;
-# 	}
-#
-# 	pval <- (sum(obs$estimate <= nullvec)+1) / (length(nullvec) + 1);
-#
-# 	if (pval > 0.5){
-# 		pval <- 1 - pval;
-# 	}
-#
-# 	if (two.tailed){
-# 		pval <- 2*pval;
-# 	}
-#
-# 	obj <- list(estimate = obs$estimate, p.value = pval, method=method, two.tailed=two.tailed);
-# 	if (return.null){
-# 		obj$null <- nullvec;
-# 	}
-#
-# 	return(obj);
-# }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
