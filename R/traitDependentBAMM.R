@@ -35,14 +35,14 @@
 ##' @title STRAPP: STructured Rate Permutations on Phylogenies
 ##'
 ##' @description Given a \code{bammdata} object and a vector of (continuous)
-##'     trait data , assess whether the correlation between the trait and bamm
+##'     trait data, assess whether the correlation between the trait and bamm
 ##'     estimated speciation, extinction or net diversification rate is
 ##'     significant using permutation. A set of posterior samples is randomly
 ##'     drawn from the \code{bammdata} object. If the trait is continuous,
 ##'     this function calculates the correlation coefficients between the
 ##'     trait and tip rates (observed correlation), as well as that with
 ##'     permuted rates for each posterior sample. In a one-tailed test for
-##'     positive correlations,the reported p-value is the proportion of the
+##'     positive correlations, the reported p-value is the proportion of the
 ##'     posterior samples in which the observed correlation is larger than the
 ##'     correlations calculated with permuted rates. In a two-tailed test, the
 ##'     reported p-value is the proportion of the posterior samples in which
@@ -62,7 +62,8 @@
 ##' @param rate A character string specifying which estimated rate from the
 ##'     \code{bammdata} object to use for testing correlation, must be one of
 ##'     'speciation', 'extinction', or 'net diversification'. Defaults to
-##'     'speciation'. You can specify just the initial letter.
+##'     'speciation'. You can specify just the initial letter. Ignored for 
+##' 	trait event data.
 ##' @param return.full A logical. If \code{TRUE}, the list of posterior
 ##'     samples, the observed correlation for each posterior sample, and the
 ##'     null distribution will be included in the returned object. Defaults to
@@ -73,7 +74,7 @@
 ##' @param logrates A logical. If \code{TRUE} log-transform the rates before
 ##'     analysis. Defaults to \code{TRUE}. This can only matter for the
 ##'     pearson correlation. 
-##' @param two.tailed A logical, used for cotinuous trait data. If
+##' @param two.tailed A logical, used for continuous trait data. If
 ##'     \code{TRUE}, perform a two-tailed statistical test (i.e., if the null
 ##'     distribution is symmetric, it is equivalent to doubling the p-value).
 ##'     Defaults to \code{TRUE}.  
@@ -88,7 +89,7 @@
 ##'     function. The R package \code{parallel} must be loaded for
 ##'     \code{nthreads > 1}.
 ##'
-##' @details Tip rates --speciation, extinction, or net diversification
+##' @details Tip rates --trait, speciation, extinction, or net diversification
 ##'     rates-- are permuted in a way such that pairwise covariances in rates
 ##'     between species are maintained. That is, tips with the same
 ##'     \code{tipStates} still have the same rate after permutation. Posterior
@@ -162,9 +163,9 @@
 ##' @keywords nonparametric
 ##' @export
 traitDependentBAMM <- function(ephy, traits, reps, rate = 'speciation', return.full = FALSE, method = 'spearman', logrates = TRUE, two.tailed = TRUE, traitorder = NA, nthreads = 1) {
-
-	if (ephy$type != 'diversification'){
-		stop("Function currently supports only bammdata objects from speciationextinction analyses\n");
+ 
+	if (ephy$type == 'trait') {
+		rate <- 'speciation'
 	}
   
 	if (nthreads > 1) {
@@ -174,6 +175,7 @@ traitDependentBAMM <- function(ephy, traits, reps, rate = 'speciation', return.f
 	}
 	ratetype.option <- c("speciation", "extinction", "net diversification");
 	ratetype <- ratetype.option[grep(paste("^", rate, sep = ''), ratetype.option, ignore.case = TRUE, perl = TRUE)];
+	  
   if (length(ratetype) == 0) {
     stop("Rate must be one of 'speciation', 'extinction', or 'net diversification', only the initial letter is needed\n")
   }
@@ -318,7 +320,13 @@ traitDependentBAMM <- function(ephy, traits, reps, rate = 'speciation', return.f
 	}
 
 	kruskaltest <- function(rates, traits) {
-		return(kruskal.test(rates ~ traits)$statistic);
+		testres <- kruskal.test(rates ~ traits);
+		# If there is no variation in rates (chi-squared value is NaN), then return a chi-squared value that has a P-value of 0.999, using the appropriate degrees of freedom
+		if (is.na(testres$statistic)) {
+			return(qchisq(p = 0.999, df = testres$parameter));
+		} else {
+			return(testres$statistic);
+		}
 	}
  
 
@@ -377,7 +385,7 @@ traitDependentBAMM <- function(ephy, traits, reps, rate = 'speciation', return.f
 		} else {
 			ave.tiprate <- getTipRates(ephy)$lambda.avg - getTipRates(ephy)$mu.avg;
 		}
-		l <- lapply(unique(traits[! is.na(traits)]), function(x) {
+		l <- lapply(unique(traits[!is.na(traits)]), function(x) {
 			median(ave.tiprate[which(traits == x)], na.rm = TRUE);
 		});
 		names(l) <- as.character(unique(traits[! is.na(traits)]));

@@ -22,7 +22,8 @@ number of posterior samples to randomly draw with replacement from the
 \item{rate}{A character string specifying which estimated rate from the
 \code{bammdata} object to use for testing correlation, must be one of
 'speciation', 'extinction', or 'net diversification'. Defaults to
-'speciation'. You can specify just the initial letter.}
+'speciation'. You can specify just the initial letter. Ignored for 
+trait event data.}
 
 \item{return.full}{A logical. If \code{TRUE}, the list of posterior
 samples, the observed correlation for each posterior sample, and the
@@ -37,7 +38,7 @@ just the initial letter.}
 analysis. Defaults to \code{TRUE}. This can only matter for the
 pearson correlation.}
 
-\item{two.tailed}{A logical, used for cotinuous trait data. If
+\item{two.tailed}{A logical, used for continuous trait data. If
 \code{TRUE}, perform a two-tailed statistical test (i.e., if the null
 distribution is symmetric, it is equivalent to doubling the p-value).
 Defaults to \code{TRUE}.}
@@ -84,14 +85,14 @@ A list with the following components:
 }
 \description{
 Given a \code{bammdata} object and a vector of (continuous)
-    trait data , assess whether the correlation between the trait and bamm
+    trait data, assess whether the correlation between the trait and bamm
     estimated speciation, extinction or net diversification rate is
     significant using permutation. A set of posterior samples is randomly
     drawn from the \code{bammdata} object. If the trait is continuous,
     this function calculates the correlation coefficients between the
     trait and tip rates (observed correlation), as well as that with
     permuted rates for each posterior sample. In a one-tailed test for
-    positive correlations,the reported p-value is the proportion of the
+    positive correlations, the reported p-value is the proportion of the
     posterior samples in which the observed correlation is larger than the
     correlations calculated with permuted rates. In a two-tailed test, the
     reported p-value is the proportion of the posterior samples in which
@@ -103,7 +104,7 @@ Given a \code{bammdata} object and a vector of (continuous)
     sum statistic is used.
 }
 \details{
-Tip rates --speciation, extinction, or net diversification
+Tip rates --trait, speciation, extinction, or net diversification
     rates-- are permuted in a way such that pairwise covariances in rates
     between species are maintained. That is, tips with the same
     \code{tipStates} still have the same rate after permutation. Posterior
