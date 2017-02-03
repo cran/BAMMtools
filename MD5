@@ -1,4 +1,4 @@
-28a496a59bbc24224205f2843d8c78c1 *DESCRIPTION
+9efc0ce6ca871f08aad7dc204883d5e7 *DESCRIPTION
 504edfee1cbbe2a20c834d034cac574c *NAMESPACE
 6dc96bcb441e4baa5d370aebb2e2cacc *R/BAMMtools-data.R
 f66a90ed504efc8d0ec4a941ad6f5af3 *R/BAMMtools-package.R
@@ -30,7 +30,7 @@ b3806382988d1816d5a4515ed4e5c377 *R/fxnDeps.R
 549bf88280e9f73046d460d0bea4f223 *R/getCladeRates.R
 d5c7df8250479dd726f3de56f5e192ca *R/getCohortMatrix.R
 79262ab1eda873c773557179b19918a5 *R/getDesc.R
-f44970529ddde44ee2b2e2eeb36d06af *R/getEventData.R
+23a145355c176060b0984a1553e8100d *R/getEventData.R
 091092ff9d1126d89dd5f86bb137720c *R/getJenksBreaks.R
 d934fae2ad5dba8a9c94e9306d015c16 *R/getMarginalBranchRateMatrix.R
 39b0559daf978c45ea071122bd1d85bf *R/getMeanBranchLengthTree.R
