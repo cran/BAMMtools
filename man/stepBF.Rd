@@ -4,8 +4,7 @@
 \alias{stepBF}
 \title{Identify the optimal number of shifts using Bayes factors}
 \usage{
-stepBF(BFmat, step.size = 20, expectedNumberOfShifts = 1,
-  inputType = "matrix")
+stepBF(BFmat, step.size = 20, expectedNumberOfShifts = 1, inputType = "matrix")
 }
 \arguments{
 \item{BFmat}{square Bayes factor matrix or a named vector of posterior probabilities}
@@ -48,13 +47,12 @@ postProb <- table(mcmc.whales$N_shifts) / nrow(mcmc.whales)
 stepBF(postProb, step.size = 1, inputType = 'postProb')
 
 }
-\author{
-Jonathan Mitchell
-}
 \references{
 \url{http://bamm-project.org}
 }
 \seealso{
 \code{\link{computeBayesFactors}}
 }
-
+\author{
+Jonathan Mitchell
+}

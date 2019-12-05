@@ -4,8 +4,14 @@
 \alias{samplingProbs}
 \title{Creates clade-specific sampling fractions}
 \usage{
-samplingProbs(tree, cladeTable, cladeRichness = NULL, globalSampling, output,
-  writeToDisk = TRUE)
+samplingProbs(
+  tree,
+  cladeTable,
+  cladeRichness = NULL,
+  globalSampling,
+  output,
+  writeToDisk = TRUE
+)
 }
 \arguments{
 \item{tree}{An object of class \code{phylo}.}
@@ -82,4 +88,3 @@ samplingProbs(tree, cladeTable = spTable, cladeRichness = NULL,
 \author{
 Pascal Title
 }
-

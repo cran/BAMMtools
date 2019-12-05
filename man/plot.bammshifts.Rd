@@ -4,10 +4,22 @@
 \alias{plot.bammshifts}
 \title{Plot distinct rate shift configurations on a phylogeny}
 \usage{
-\method{plot}{bammshifts}(x, ephy, method = "phylogram", pal = "RdYlBu",
-  rank = NULL, index = NULL, spex = "s", legend = TRUE,
-  add.freq.text = TRUE, logcolor = FALSE, breaksmethod = "linear",
-  color.interval = NULL, JenksSubset = 20000, ...)
+\method{plot}{bammshifts}(
+  x,
+  ephy,
+  method = "phylogram",
+  pal = "RdYlBu",
+  rank = NULL,
+  index = NULL,
+  spex = "s",
+  legend = TRUE,
+  add.freq.text = TRUE,
+  logcolor = FALSE,
+  breaksmethod = "linear",
+  color.interval = NULL,
+  JenksSubset = 20000,
+  ...
+)
 }
 \arguments{
 \item{x}{An object of class \code{bammshifts}.}
@@ -93,9 +105,6 @@ sc <- distinctShiftConfigurations(ed, expectedNumberOfShifts = 1,
 
 plot(sc, ed)
 }
-\author{
-Mike Grundler, Dan Rabosky
-}
 \references{
 \url{http://bamm-project.org}
 }
@@ -103,4 +112,6 @@ Mike Grundler, Dan Rabosky
 \code{\link{distinctShiftConfigurations}},
     \code{\link{plot.bammdata}}
 }
-
+\author{
+Mike Grundler, Dan Rabosky
+}

@@ -158,7 +158,8 @@ redirect <- function(coord, theta) {
 ##'     other rate variation being drowned out. If specified, the color ramp
 ##'     will be built between these two color.interval values, and the rates
 ##'     outside of the color interval range will be set to the highest and
-##'     lowest color. 
+##'     lowest color. The total number of colors will also be increased such
+##'     that 64 color bins are found within the color.interval.
 ##'
 ##'     If \code{plot.bammdata} is called repeatedly with the same
 ##'     \code{bammdata} object, computation can be reduced by first calling
@@ -255,7 +256,7 @@ redirect <- function(coord, theta) {
 ##' @keywords models graphics
 ##' @export
 plot.bammdata <- function (x, tau = 0.01, method = "phylogram", xlim = NULL, ylim = NULL, vtheta = 5, rbf = 0.001, show = TRUE, labels = FALSE, legend = FALSE, spex = "s", lwd = 1, cex = 1, pal = "RdYlBu", mask = integer(0), mask.color = gray(0.5), colorbreaks = NULL, logcolor = FALSE, breaksmethod = "linear", color.interval = NULL, JenksSubset = 20000, par.reset = FALSE, direction = "rightwards", ...) {
-    if ("bammdata" %in% class(x)) {
+    if (inherits(x, "bammdata")) {
     	if (attributes(x)$order != "cladewise") {
     		stop("Function requires tree in 'cladewise' order");
     	}
@@ -277,8 +278,8 @@ plot.bammdata <- function (x, tau = 0.01, method = "phylogram", xlim = NULL, yli
             stop("color.interval must be a vector of 2 numeric values.");
         }
     }
-
-    if (!is.binary.tree(phy)) {
+    
+    if (!is.binary.phylo(phy)) {
         stop("Function requires fully bifurcating tree");
     }
     if (any(phy$edge.length == 0)) {
@@ -287,8 +288,41 @@ plot.bammdata <- function (x, tau = 0.01, method = "phylogram", xlim = NULL, yli
     if (!("dtrates" %in% names(x))) {
         x <- dtRates(x, tau);
     }
+    
+    NCOLORS <- 64;
+	
+	if (!is.null(color.interval)) {
+    	# change the number of breaks such that the range of color.interval 
+    	# is equivalent in terms of number of colors to the full range
+    	# this way we preserve good resolution
+        # Here we will ensure that NCOLORS bins occur within the color.interval
+    	
+   		if (x$type == "trait") {
+    		ratesRange <- range(x$dtrates$rates);
+    	} else if (x$type == "diversification") {
+    		if (tolower(spex) == "s") {
+    			ratesRange <- range(x$dtrates$rates[[1]]);
+    		} else if (tolower(spex) == "e") {
+    			ratesRange <- range(x$dtrates$rates[[2]]);
+    		} else if (tolower(spex) == "netdiv") {
+    			ratesRange <- range(x$dtrates$rates[[1]] - x$dtrates$rates[[2]]);
+    		}
+    	}	
+    	if (all(!is.na(color.interval))) {
+    		brks <- seq(min(color.interval[1], ratesRange[1]), max(color.interval[2], ratesRange[2]), length.out = (NCOLORS+1));
+    		intervalLength <- length(which.min(abs(color.interval[1] - brks)) : which.min(abs(color.interval[2] - brks)));
+    	} else if (is.na(color.interval[1])) {
+    		brks <- seq(ratesRange[1], max(color.interval[2], ratesRange[2]), length.out = (NCOLORS+1));
+    		intervalLength <- length(1 : which.min(abs(color.interval[2] - brks)));
+    	} else if (is.na(color.interval[2])) {
+    		brks <- seq(min(color.interval[1], ratesRange[1]), ratesRange[2], length.out = (NCOLORS+1));
+    		intervalLength <- length(which.min(abs(color.interval[1] - brks)) : length(brks));
+    	}
+    	NCOLORS <- round((NCOLORS ^ 2) / intervalLength)    	
+    }
+
     if (is.null(colorbreaks)) {
-   	    colorbreaks <- assignColorBreaks(x$dtrates$rates, 64, spex, logcolor, breaksmethod, JenksSubset);
+   	    colorbreaks <- assignColorBreaks(x$dtrates$rates, NCOLORS, spex, logcolor, breaksmethod, JenksSubset);
     }
     if (x$type == "trait") {
     	colorobj <- colorMap(x$dtrates$rates, pal, colorbreaks, logcolor, color.interval);
@@ -356,7 +390,13 @@ plot.bammdata <- function (x, tau = 0.01, method = "phylogram", xlim = NULL, yli
         		ofs <- max(nchar(phy$tip.label) * 0.03 * cex);
         }
         if (method == "polar") {
-            plot.window(xlim = c(-1, 1) + c(-rb, rb) + c(-ofs, ofs), ylim = c(-1, 1) + c(-rb, rb) + c(-ofs, ofs), asp = 1);
+            if (is.null(xlim) || is.null(ylim)) {
+                if (is.null(xlim))
+                    xlim = c(-1, 1) + c(-rb, rb) + c(-ofs, ofs)
+                if (is.null(ylim))
+                    ylim = c(-1, 1) + c(-rb, rb) + c(-ofs, ofs) 
+            }
+            plot.window(xlim = xlim, ylim = ylim, asp = 1);
             segments(x0, y0, x1, y1, col = edge.color, lwd = lwd, lend = 2);
             arc(0, 0, ret$arcs[, 1], ret$arcs[, 2], c(rb, rb + phy$end/tH), border = arc.color, lwd = lwd);
             if (labels) {
@@ -467,13 +507,13 @@ plot.bammdata <- function (x, tau = 0.01, method = "phylogram", xlim = NULL, yli
         	assign("last_plot.phylo", list(type = "fan", Ntip = phy$Nnode + 1, Nnode = phy$Nnode, edge = phy$edge, xx = ret$segs[index, 3], yy = ret$segs[index, 4], theta = ret$segs[index, 5], rb = rb, pp = par(no.readonly = TRUE)), envir = .PlotPhyloEnv);
 		}
 	if (legend) {
-		addBAMMlegend(x = list(coords = ret$segs[-1, ], colorbreaks = colorbreaks, palette = colorobj$colpalette, colordens = colorobj$colsdensity), location = 'right')
+		addBAMMlegend(x = list(coords = ret$segs[-1, ], colorbreaks = colorobj$breaks, palette = colorobj$colpalette, colordens = colorobj$colsdensity), location = 'right')
 	}
 	}
     if (par.reset) {
         par(op);
     }
-    invisible(list(coords = ret$segs[-1, ], colorbreaks = colorbreaks, palette = colorobj$colpalette, colordens = colorobj$colsdensity));
+    invisible(list(coords = ret$segs[-1, ], colorbreaks = colorobj$breaks, palette = colorobj$colpalette, colordens = colorobj$colsdensity));
 }
 
 

@@ -4,8 +4,14 @@
 \alias{getRateThroughTimeMatrix}
 \title{Generate rate-through-time matrix from \code{bammdata} object}
 \usage{
-getRateThroughTimeMatrix(ephy, start.time = NULL, end.time = NULL,
-  nslices = 100, node = NULL, nodetype = "include")
+getRateThroughTimeMatrix(
+  ephy,
+  start.time = NULL,
+  end.time = NULL,
+  nslices = 100,
+  node = NULL,
+  nodetype = "include"
+)
 }
 \arguments{
 \item{ephy}{An object of class \code{bammdata}.}
@@ -120,11 +126,10 @@ for (i in 1:length(tvec)){
 
 ## This shows the grid of time slices over the phylogeny}
 }
-\author{
-Dan Rabosky
-}
 \seealso{
 \code{\link{plotRateThroughTime}}
 }
+\author{
+Dan Rabosky
+}
 \keyword{models}
-

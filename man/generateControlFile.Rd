@@ -4,8 +4,11 @@
 \alias{generateControlFile}
 \title{Generate control file for \code{BAMM}}
 \usage{
-generateControlFile(file = "controlfile.txt", type = "diversification",
-  params = NULL)
+generateControlFile(
+  file = "controlfile.txt",
+  type = "diversification",
+  params = NULL
+)
 }
 \arguments{
 \item{file}{Destination file name with or without path.}
@@ -29,6 +32,7 @@ The user can supply parameters as a list, where the name of the
     uncommented if it was commented in the template.
 }
 \examples{
+\dontrun{
 #Produce a blank template control file
 generateControlFile(file = 'traitcontrol.txt', type='trait')
 
@@ -48,10 +52,10 @@ generateControlFile(file = 'divcontrol.txt', params = list(
     muInitPrior = as.numeric(priors['muInitPrior']),
     expectedNumberOfShifts = '1'))
 }
-\author{
-Pascal Title
 }
 \references{
 \url{http://bamm-project.org}
 }
-
+\author{
+Pascal Title
+}

@@ -4,9 +4,20 @@
 \alias{addBAMMlegend}
 \title{Add a color legend to a phylo-rate plot}
 \usage{
-addBAMMlegend(x, direction, side, location = "topleft", nTicks = 2,
-  shortFrac = 0.02, longFrac = 0.3, axisOffset = 0.002, cex.axis = 0.8,
-  labelDist = 0.7, ...)
+addBAMMlegend(
+  x,
+  direction,
+  side,
+  location = "topleft",
+  nTicks = 2,
+  stretchInterval = FALSE,
+  shortFrac = 0.02,
+  longFrac = 0.3,
+  axisOffset = 0.002,
+  cex.axis = 0.8,
+  labelDist = 0.7,
+  ...
+)
 }
 \arguments{
 \item{x}{A \code{plot.bammdata} object.}
@@ -22,6 +33,10 @@ Automatically inferred if omitted.}
 the corners of the bar legend c(xmin, xmax, ymin, ymax).}
 
 \item{nTicks}{Number of tick marks, besides min and max.}
+
+\item{stretchInterval}{If color.interval was defined, should the legend be
+stretched to the color.interval, or should the full range of rates be 
+presented.}
 
 \item{shortFrac}{Percent of the plot width range that will be used as the
 short dimention of the legend. Only applies to preset location
@@ -92,10 +107,9 @@ x <- plot(ephy, breaksmethod = 'linear',
           color.interval = c(NA, 0.12), lwd = 2)
 addBAMMlegend(x, location = c(0, 30, 200, 205), nTicks = 1, side = 3)
 }
-\author{
-Pascal Title
-}
 \seealso{
 Requires an object created with \code{\link{plot.bammdata}}.
 }
-
+\author{
+Pascal Title
+}

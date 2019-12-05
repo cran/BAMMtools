@@ -8,12 +8,32 @@
     \url{http://geography.uoregon.edu/datagraphics/color_scales.htm}
 }
 \usage{
-\method{plot}{bammdata}(x, tau = 0.01, method = "phylogram", xlim = NULL,
-  ylim = NULL, vtheta = 5, rbf = 0.001, show = TRUE, labels = FALSE,
-  legend = FALSE, spex = "s", lwd = 1, cex = 1, pal = "RdYlBu",
-  mask = integer(0), mask.color = gray(0.5), colorbreaks = NULL,
-  logcolor = FALSE, breaksmethod = "linear", color.interval = NULL,
-  JenksSubset = 20000, par.reset = FALSE, direction = "rightwards", ...)
+\method{plot}{bammdata}(
+  x,
+  tau = 0.01,
+  method = "phylogram",
+  xlim = NULL,
+  ylim = NULL,
+  vtheta = 5,
+  rbf = 0.001,
+  show = TRUE,
+  labels = FALSE,
+  legend = FALSE,
+  spex = "s",
+  lwd = 1,
+  cex = 1,
+  pal = "RdYlBu",
+  mask = integer(0),
+  mask.color = gray(0.5),
+  colorbreaks = NULL,
+  logcolor = FALSE,
+  breaksmethod = "linear",
+  color.interval = NULL,
+  JenksSubset = 20000,
+  par.reset = FALSE,
+  direction = "rightwards",
+  ...
+)
 }
 \arguments{
 \item{x}{An object of class \code{bammdata}.}
@@ -203,7 +223,8 @@ To calculate rates, each branch of the phylogeny is discretized
     other rate variation being drowned out. If specified, the color ramp
     will be built between these two color.interval values, and the rates
     outside of the color interval range will be set to the highest and
-    lowest color. 
+    lowest color. The total number of colors will also be increased such
+    that 64 color bins are found within the color.interval.
 
     If \code{plot.bammdata} is called repeatedly with the same
     \code{bammdata} object, computation can be reduced by first calling
@@ -275,14 +296,13 @@ plot(ed, pal=c("darkgreen","yellow2","red"),lwd=3)
 plot(ed,method="polar",pal="Spectral", lwd=3)
 plot(ed,method="polar",pal="RdYlBu", lwd=3)}
 }
-\author{
-Mike Grundler, Pascal Title
-}
 \seealso{
 \code{\link{dtRates}}, \code{\link{addBAMMshifts}},
     \code{\link{assignColorBreaks}}, \code{\link{subtreeBAMM}},
     \code{\link{colorRampPalette}}
 }
+\author{
+Mike Grundler, Pascal Title
+}
 \keyword{graphics}
 \keyword{models}
-

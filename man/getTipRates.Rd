@@ -75,16 +75,15 @@ ndr <- getTipRates(ephy, returnNetDiv = TRUE,
                    statistic = 'median')$netdiv.avg
 
 # Return mean species-specific speciation rates from all posterior 
-# samples in the \\code{bamm-data} object.
+# samples in the \code{bamm-data} object.
 lam <- getTipRates(ephy, returnNetDiv = FALSE, statistic = 'mean')$lambda
 rowMeans(lam)
-}
-\author{
-Pascal Title
 }
 \seealso{
 Requires an object of class \code{bammdata} as obtained with
     \code{\link{getEventData}}.
 }
+\author{
+Pascal Title
+}
 \keyword{models}
-

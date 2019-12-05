@@ -4,8 +4,14 @@
 \alias{assignColorBreaks}
 \title{Map macroevolutionary rates to colors}
 \usage{
-assignColorBreaks(rates, NCOLORS = 64, spex = "s", logcolor = FALSE,
-  method = c("linear", "quantile", "jenks"), JenksSubset = NULL)
+assignColorBreaks(
+  rates,
+  NCOLORS = 64,
+  spex = "s",
+  logcolor = FALSE,
+  method = c("linear", "quantile", "jenks"),
+  JenksSubset = NULL
+)
 }
 \arguments{
 \item{rates}{A numeric vector of phenotypic rates or a list of numeric
@@ -68,11 +74,10 @@ colors <- assignColorBreaks(ed$dtrates$rates, spex="netdiv")
 
 plot(ed, colorbreaks = colors, spex="netdiv")
 }
-\author{
-Mike Grundler, Pascal Title
-}
 \seealso{
 \code{\link{plot.bammdata}}
 }
+\author{
+Mike Grundler, Pascal Title
+}
 \keyword{graphics}
-

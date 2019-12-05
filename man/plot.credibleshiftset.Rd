@@ -5,12 +5,24 @@
 \title{Plot credible set of rate shift configurations from \code{BAMM}
     analysis}
 \usage{
-\method{plot}{credibleshiftset}(x, plotmax = 9, method = "phylogram",
-  pal = "RdYlBu", shiftColor = "black", spex = "s",
-  add.freq.text = TRUE, use.plot.bammdata = TRUE, border = TRUE,
-  legend = FALSE, send2pdf = FALSE, logcolor = FALSE,
-  breaksmethod = "linear", color.interval = NULL, JenksSubset = 20000,
-  ...)
+\method{plot}{credibleshiftset}(
+  x,
+  plotmax = 9,
+  method = "phylogram",
+  pal = "RdYlBu",
+  shiftColor = "black",
+  spex = "s",
+  add.freq.text = TRUE,
+  use.plot.bammdata = TRUE,
+  border = TRUE,
+  legend = FALSE,
+  send2pdf = FALSE,
+  logcolor = FALSE,
+  breaksmethod = "linear",
+  color.interval = NULL,
+  JenksSubset = 20000,
+  ...
+)
 }
 \arguments{
 \item{x}{An object of class \code{credibleshiftset}.}
@@ -82,9 +94,6 @@ ed <- getEventData(whales, events.whales, nsamples=500)
 cset <- credibleShiftSet(ed, expectedNumberOfShifts = 1, threshold = 5)
 plot(cset)
 }
-\author{
-Mike Grundler
-}
 \references{
 \url{http://bamm-project.org}
 }
@@ -93,4 +102,6 @@ Mike Grundler
     \code{\link{distinctShiftConfigurations}},
     \code{\link{plot.bammdata}}, \code{\link{plot.bammshifts}}
 }
-
+\author{
+Mike Grundler
+}

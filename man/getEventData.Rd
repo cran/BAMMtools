@@ -4,8 +4,14 @@
 \alias{getEventData}
 \title{Create \code{bammdata} object from MCMC output}
 \usage{
-getEventData(phy, eventdata, burnin = 0, nsamples = NULL, verbose = FALSE,
-  type = "diversification")
+getEventData(
+  phy,
+  eventdata,
+  burnin = 0,
+  nsamples = NULL,
+  verbose = FALSE,
+  type = "diversification"
+)
 }
 \arguments{
 \item{phy}{An object of class \code{phylo} - specifically, the
@@ -163,9 +169,6 @@ mean(brates$beta)
 # Plot rates:
 plot(xx)
 }
-\author{
-Dan Rabosky, Mike Grundler
-}
 \references{
 \url{http://bamm-project.org/}
 }
@@ -173,5 +176,7 @@ Dan Rabosky, Mike Grundler
 \code{\link{summary.bammdata}}, \code{\link{plot.bammdata}},
     \code{\link{dtRates}}.
 }
+\author{
+Dan Rabosky, Mike Grundler
+}
 \keyword{models}
-

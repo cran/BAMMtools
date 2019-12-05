@@ -80,7 +80,7 @@ ed <- getEventData(whales, events.whales, burnin=0.1, nsamples=200)
 tree.pp <- testTimeVariableBranches(ed)
 
 # Plot tree, but color all branches where the posterior 
-# probability of time-varying rates exceeds 95\\\%:
+# probability of time-varying rates exceeds 95\\%:
 
 colvec <- rep("black", nrow(whales$edge))
 colvec[tree.pp$edge.length >= 0.95] <- 'red'
@@ -116,13 +116,12 @@ mtext(side = 2, text = "Bayes factor: uniform prior odds", line=3,
 # To be clear, the Bayes factors in this example were computed from the
 #  same posterior probabilities: it is only the prior odds that differed.
 }
-\author{
-Dan Rabosky
-}
 \references{
 \url{http://bamm-project.org}
 }
 \seealso{
 \code{\link{getRateThroughTimeMatrix}}
 }
-
+\author{
+Dan Rabosky
+}
