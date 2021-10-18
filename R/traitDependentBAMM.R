@@ -133,7 +133,7 @@
 ##'
 ##' @seealso \code{\link{subtreeBAMM}}
 ##'
-##' @references \url{http://bamm-project.org}
+##' @references \url{http://bamm-project.org/}
 ##'
 ##'     Rabosky, D. L. and Huang, H., 2015. A Robust Semi-Parametric Test for
 ##'     Detecting Trait-Dependent Diversification. Systematic Biology 65:
@@ -225,8 +225,8 @@ traitDependentBAMM <- function(ephy, traits, reps, rate = 'speciation', return.f
 
 	#check if the traitorder is specified
 	trait.state <- NA;
-	if (two.tailed == FALSE) {
-		if (is.na(traitorder)) {
+	if (!two.tailed) {
+		if (anyNA(traitorder)) {
 			stop("selected one-tail test, but traitorder is not specified\n");
 		}
 		if ( method == "kruskal") {

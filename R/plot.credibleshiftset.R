@@ -52,7 +52,7 @@
 ##'     \code{\link{distinctShiftConfigurations}},
 ##'     \code{\link{plot.bammdata}}, \code{\link{plot.bammshifts}}
 ##'
-##' @references \url{http://bamm-project.org}
+##' @references \url{http://bamm-project.org/}
 ##'
 ##' @examples
 ##' data(events.whales)
@@ -60,7 +60,10 @@
 ##' ed <- getEventData(whales, events.whales, nsamples=500)
 ##' cset <- credibleShiftSet(ed, expectedNumberOfShifts = 1, threshold = 5)
 ##' plot(cset)
+
+##' @aliases plot.credibleshiftset
 ##' @export
+
 plot.credibleshiftset <- function(x, plotmax=9, method='phylogram', pal = 'RdYlBu', shiftColor = 'black', spex = "s", add.freq.text = TRUE, use.plot.bammdata = TRUE, border = TRUE, legend = FALSE, send2pdf = FALSE, logcolor=FALSE, breaksmethod='linear', color.interval=NULL, JenksSubset=20000, ...)
 {
 	if (!inherits(x, "credibleshiftset")) {

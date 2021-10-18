@@ -123,8 +123,8 @@ redirect <- function(coord, theta) {
 ##'         \item{revgray}
 ##'     }
 ##'     For more information about these color palettes visit
-##'     \url{http://colorbrewer2.org} and
-##'     \url{http://geography.uoregon.edu/datagraphics/color_scales.htm} or
+##'     \url{https://colorbrewer2.org/} and
+##'     \url{https://pjbartlein.github.io/datagraphics/color_scales.html} or
 ##'     use the help files of the R packages \code{RColorBrewer} and
 ##'     \code{dichromat}.
 ##'
@@ -179,8 +179,8 @@ redirect <- function(coord, theta) {
 ##'             corresponding to each rate value.}
 ##'     }
 ##'
-##' @source \url{http://colorbrewer2.org},
-##'     \url{http://geography.uoregon.edu/datagraphics/color_scales.htm}
+##' @source \url{https://colorbrewer2.org/},
+##'     \url{https://pjbartlein.github.io/datagraphics/color_scales.html}
 ##'
 ##' @author Mike Grundler, Pascal Title
 ##'
@@ -253,8 +253,12 @@ redirect <- function(coord, theta) {
 ##' plot(ed, pal=c("darkgreen","yellow2","red"),lwd=3)
 ##' plot(ed,method="polar",pal="Spectral", lwd=3)
 ##' plot(ed,method="polar",pal="RdYlBu", lwd=3)}
+
 ##' @keywords models graphics
+##' @rdname plot
+##' @aliases plot
 ##' @export
+
 plot.bammdata <- function (x, tau = 0.01, method = "phylogram", xlim = NULL, ylim = NULL, vtheta = 5, rbf = 0.001, show = TRUE, labels = FALSE, legend = FALSE, spex = "s", lwd = 1, cex = 1, pal = "RdYlBu", mask = integer(0), mask.color = gray(0.5), colorbreaks = NULL, logcolor = FALSE, breaksmethod = "linear", color.interval = NULL, JenksSubset = 20000, par.reset = FALSE, direction = "rightwards", ...) {
     if (inherits(x, "bammdata")) {
     	if (attributes(x)$order != "cladewise") {
