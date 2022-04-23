@@ -1,5 +1,5 @@
-6ea2ddf8093c540615498b42e9155528 *DESCRIPTION
-c76eedf6869b984bcbde410ae0a8bd63 *NAMESPACE
+35fa27740b7666b22dd513aa2cf67365 *DESCRIPTION
+952945f9d272cd3982902cb322f180c9 *NAMESPACE
 6dc96bcb441e4baa5d370aebb2e2cacc *R/BAMMtools-data.R
 abbd4ed7f525ac9b819df3206702d90c *R/BAMMtools-package.R
 3808ddbf58b7b344f455d1a7a5f9c51b *R/NU.branching.times.R
@@ -8,10 +8,10 @@ abbd4ed7f525ac9b819df3206702d90c *R/BAMMtools-package.R
 e5a6e62f153e0ca6a1c654ef52667615 *R/arc.R
 b05623a864ead1e49b3f9aea1afdcf17 *R/areEventConfigurationsIdentical.R
 a38d5ecc904d59c99bd0603fd997098a *R/areShiftSetsEqual.R
-a4c12ab83b62653a6c0bd43dea8a81fe *R/as.bammdata.R
+c18e40abca4178fbe4f926d8c381b534 *R/as.bammdata.R
 9e106cd43ad02aae75f5c7778209c05f *R/as.phylo.bammdata.R
 fa9ac81cc222f3c9284da07d325ad8b2 *R/assignColorBreaks.R
-346e3f308d9446a27995d458fec91f20 *R/bammLikelihood.R
+8fe614bdb4610f0b0d06351803f70ec3 *R/bammLikelihood.R
 cc3613953499a44b796905fa486ebea4 *R/bammcolors.R
 14ab222b064dff05966b4a62c868466e *R/barLegend.R
 4862c6aedd6abff3de1805271cd6b3fa *R/branchMeanRateExponential.R
@@ -51,9 +51,9 @@ e0d1abd73f81213a063aec667771d1a5 *R/marginalShiftProbsTree.R
 e16d449321ee26bc8fc9436930a8995e *R/mkdtsegsPhylo.R
 e1da57910a5fb4972cd4dddbc03eab39 *R/mkdtsegsPolar.R
 3a0f88c7b5128f3b06050f8a61b1ee4e *R/phylogeneticMean.R
-85bff53db8af0ae11827613d69153ef2 *R/plot.bammdata.R
-43ab700eeed8c67b21d867fc293dfcd0 *R/plot.bammshifts.R
-b90d859b5a343a07521b072ad380d441 *R/plot.credibleshiftset.R
+4f8823b935552aa1c5bf045cc457c2c9 *R/plot.bammdata.R
+632b64f11a911224ca82c50b7d270117 *R/plot.bammshifts.R
+fd1245926409256cc4d161258c0544ab *R/plot.credibleshiftset.R
 07d5a5c4632df1129f16c8476d639cd9 *R/plotPrior.R
 3bb472ebb42e7920f1f1c5496f2350f2 *R/plotRateThroughTime.R
 2cb4dfb0a2881f56fd219e7a860e2dbc *R/print.bammdata.R
@@ -114,7 +114,7 @@ f0168ea10ee1af44a125be94435cc184 *man/getJenksBreaks.Rd
 4291afeeec74eda002b6c56458ad54d1 *man/getmrca.Rd
 061333f28101c9dd9c635779d1420cf4 *man/marginalOddsRatioBranches.Rd
 d425f57f01d808d5222ac254b33d86f5 *man/maximumShiftCredibility.Rd
-cab8167517dfca6dc8f5865adb2ea502 *man/plot.Rd
+349468bbbb8c8e0dd37cb00a8097f5bb *man/plot.Rd
 a477b8b10df95c3cb32f04bc1aff67fd *man/plot.bammshifts.Rd
 8bb535327a04b21c97196ac0ad4786a9 *man/plot.credibleshiftset.Rd
 20ce7726740d5953bf78ef72787b201e *man/plotPrior.Rd
