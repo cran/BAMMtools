@@ -1,4 +1,4 @@
-35fa27740b7666b22dd513aa2cf67365 *DESCRIPTION
+33c80302e72885d08dc44a5e946d6c3d *DESCRIPTION
 952945f9d272cd3982902cb322f180c9 *NAMESPACE
 6dc96bcb441e4baa5d370aebb2e2cacc *R/BAMMtools-data.R
 abbd4ed7f525ac9b819df3206702d90c *R/BAMMtools-package.R
@@ -27,7 +27,7 @@ b3806382988d1816d5a4515ed4e5c377 *R/fxnDeps.R
 1aaa787cfff7d486c62731ce5c54377b *R/generateControlFile.R
 665739c1bd1c0eae1ecc55f7f9f25bba *R/getBestShiftConfiguration.R
 03de738941eb583f482f45fcecaef8e4 *R/getBranchShiftPriors.R
-ec106c5f2cf4502f5987480b84d15014 *R/getCladeRates.R
+c28e5f8750d130e93744f6ef8e8bf74c *R/getCladeRates.R
 03d14e140d16e9b76da018892933d2bf *R/getCohortMatrix.R
 79262ab1eda873c773557179b19918a5 *R/getDesc.R
 736a5fc0520010f4d1ce2172b3dc21a7 *R/getEventData.R
@@ -35,7 +35,7 @@ ec106c5f2cf4502f5987480b84d15014 *R/getCladeRates.R
 e44be3c72197dd777da355bd9454a697 *R/getMarginalBranchRateMatrix.R
 e5ea27c60c777f7f68d125b4703c0516 *R/getMeanBranchLengthTree.R
 cc5fd1d2f1654421435c312fc1ec9ec0 *R/getPathToRoot.R
-c746a7ba5ef75388d72afb65ed001ea5 *R/getRateThroughTimeMatrix.R
+020f75c20aa6c90d77a7a257b4f12334 *R/getRateThroughTimeMatrix.R
 0b3ae5dbd09d517cbd6b76855a065a63 *R/getRecursiveSequence.R
 0c1f36cf3e8bcda32ab3ac28808eac7e *R/getSequenceForwardTraversal.R
 b942810527770d48c0c4d5b8fec41528 *R/getShiftNodesFromIndex.R
@@ -58,9 +58,9 @@ fd1245926409256cc4d161258c0544ab *R/plot.credibleshiftset.R
 3bb472ebb42e7920f1f1c5496f2350f2 *R/plotRateThroughTime.R
 2cb4dfb0a2881f56fd219e7a860e2dbc *R/print.bammdata.R
 0bf839e46103f7bad66fa6416f1f8617 *R/rateLegend.R
-314f54c13c56c4769676ef82650759e9 *R/ratesHistogram.R
+323b9c86f19a7a6df7c20f993d2ee78a *R/ratesHistogram.R
 05449bd029a2291958a6c00fa8c4340e *R/recursivelySetNodeStates.R
-788ba2d34d143097ccaed5663dcd0697 *R/samplingProbs.R
+22786dd78381a872d3cd956fb1ab4a04 *R/samplingProbs.R
 a6f654afef98c5a6cc9a10af887064dd *R/segMap.R
 642375d4b204e489b17b4462dc80551d *R/setBAMMpriors.R
 b868796cd7ddd0db15bc0b7fe7d19da2 *R/setPhyloTreeCoords.R
