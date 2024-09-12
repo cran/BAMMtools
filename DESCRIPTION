@@ -2,10 +2,16 @@ Package: BAMMtools
 Type: Package
 Title: Analysis and Visualization of Macroevolutionary Dynamics on
         Phylogenetic Trees
-Version: 2.1.11
-Author: Dan Rabosky, Mike Grundler, Pascal Title, Carlos Anderson, Jeff Shi,
-    Joseph Brown, Huateng Huang, Jon Mitchell
-Maintainer: Pascal Title <ptitle@umich.edu>
+Version: 2.1.12
+Authors@R: c(
+    person("Dan", "Rabosky", role = c("aut")),
+    person("Michael", "Grundler", role = c("aut")),
+    person("Pascal", "Title", email = "ptitle@umich.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-6316-0736")),
+    person("Carlos", "Anderson", role = c("aut")),
+    person("Jeff", "Shi", role = c("aut")),
+    person("Joseph", "Brown", role = c("aut")),
+    person("Huateng", "Huang", role = c("aut")),
+    person("Jon", "Mitchell", role = c("aut")))
 Imports: Rcpp (>= 0.11.0), gplots, methods
 Depends: ape, R (>= 2.10)
 Suggests: parallel
@@ -22,7 +28,16 @@ License: GPL (>= 2)
 URL: http://bamm-project.org/
 NeedsCompilation: yes
 Encoding: UTF-8
-RoxygenNote: 7.2.3
-Packaged: 2023-12-18 17:47:17 UTC; pascaltitle
+RoxygenNote: 7.3.2
+Packaged: 2024-09-12 19:59:57 UTC; pascaltitle
+Author: Dan Rabosky [aut],
+  Michael Grundler [aut],
+  Pascal Title [aut, cre] (<https://orcid.org/0000-0002-6316-0736>),
+  Carlos Anderson [aut],
+  Jeff Shi [aut],
+  Joseph Brown [aut],
+  Huateng Huang [aut],
+  Jon Mitchell [aut]
+Maintainer: Pascal Title <ptitle@umich.edu>
 Repository: CRAN
-Date/Publication: 2023-12-19 05:50:09 UTC
+Date/Publication: 2024-09-12 22:10:47 UTC

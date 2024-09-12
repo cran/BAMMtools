@@ -8,6 +8,7 @@
 
 #include <float.h>
 #include <R.h>
+#include <Rinternals.h>
 
 // Function declarations
 void jenksBrks(double *d, int *k1, int *length_d1, double *brks);
@@ -26,11 +27,11 @@ void jenksBrks(double *d, int *k1, int *length_d1, double *brks)
 	int nCat = k;
 	int length_d = length_d1[0];
 
-	double** mat1 = Calloc(length_d, double*);
-	double** mat2 = Calloc(length_d, double*);
+	double** mat1 = R_Calloc(length_d, double*);
+	double** mat2 = R_Calloc(length_d, double*);
 
 	for (int i = 0; i < length_d; i++) {
-		double* row = Calloc(k, double);
+		double* row = R_Calloc(k, double);
 		for (int j = 0; j < k; j++) {
 			row[j] = 1.0;
 		}
@@ -38,7 +39,7 @@ void jenksBrks(double *d, int *k1, int *length_d1, double *brks)
 	}
 
 	for (int i = 0; i < length_d; i++) {
-		double* row = Calloc(k, double);
+		double* row = R_Calloc(k, double);
 		for (int j = 0; j < k; j++) {
 			row[j] = 0.0;
 		}
@@ -104,12 +105,12 @@ void jenksBrks(double *d, int *k1, int *length_d1, double *brks)
 
 	//delete objects
 	for (int i = 0; i < length_d; i++) {
-		Free(mat1[i]);
-		Free(mat2[i]);
+		R_Free(mat1[i]);
+		R_Free(mat2[i]);
 	}
 	
-	Free(mat1);
-	Free(mat2);
+	R_Free(mat1);
+	R_Free(mat2);
 }
 
 

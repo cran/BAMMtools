@@ -32,7 +32,7 @@ void setrecursivesequence(int * anc, int * desc, int * node, int * ne, int * dow
 void rootward(int * anc, int * desc, int * node, int * nnode, int * ndorder) {
 	int i, d = 0;
 	int * children;
-	children = Calloc(2, int);
+	children = R_Calloc(2, int);
 	for (i = 0; i < (*nnode-1); i++) {
 		if (anc[i] == *node) {
 			children[d] = desc[i];
@@ -43,24 +43,24 @@ void rootward(int * anc, int * desc, int * node, int * nnode, int * ndorder) {
 	
 	if (children[0] != 0 && children[1] != 0) {
 		int * child;
-		child = Calloc(1,int); 
+		child = R_Calloc(1,int); 
 		for (i = 0; i < 2; i++) {
 			*child = children[i];
 			rootward(anc, desc, child, nnode, ndorder);
-			//Free(child);
+			//R_Free(child);
 		}
-		Free(child);
+		R_Free(child);
 	}
 	ndorder[zkzkz] = *node; zkzkz++;
 	//Rprintf("%d\n", zkzkz);
-	Free(children);
+	R_Free(children);
 }
 
 void tipward(int * anc, int * desc, int * node, int * nnode, int * ndorder) {
 	ndorder[zkzkz] = *node; zkzkz++;
 	int i, d = 0;
 	int * children;
-	children = Calloc(2, int);
+	children = R_Calloc(2, int);
 	for (i = 0; i < (*nnode-1); i++) {
 		if (anc[i] == *node) {
 			children[d] = desc[i];
@@ -71,23 +71,23 @@ void tipward(int * anc, int * desc, int * node, int * nnode, int * ndorder) {
 	
 	if (children[0] != 0 && children[1] != 0) {
 		int * child;
-		child = Calloc(1,int); 
+		child = R_Calloc(1,int); 
 		for (i = 0; i < 2; i++) {
 			*child = children[i];
 			tipward(anc, desc, child, nnode, ndorder);
-			//Free(child);
+			//R_Free(child);
 		}
-		Free(child);
+		R_Free(child);
 	}
 	//Rprintf("%d\n", zkzkz);
-	Free(children);
+	R_Free(children);
 }
 
 void recursivesequence(int * anc, int * desc, int * node, int * ne, int * downseq, int * lastvisit) {
 	downseq[zkzkz] = *node; zkzkz++; 
 	int i, d = 0;
 	int * children;
-	children = Calloc(2, int);
+	children = R_Calloc(2, int);
 	for (i = 0; i < *ne; i++) {
 		if (anc[i] == *node) {
 			children[d] = desc[i];
@@ -97,23 +97,23 @@ void recursivesequence(int * anc, int * desc, int * node, int * ne, int * downse
 	}
 	if (children[0] != 0 && children[1] != 0) {
 		int * child;
-		child = Calloc(1, int);
+		child = R_Calloc(1, int);
 		for (i = 0; i < 2; i++)
 		{
 			*child = children[i];
 			recursivesequence(anc,desc,child,ne,downseq,lastvisit);
 		}
-		Free(child);
+		R_Free(child);
 	}
 	for (i = 0; i < *ne+1; i++) if (downseq[i] == 0) break;
 	lastvisit[*node-1] = downseq[i-1];  
-	Free(children);	
+	R_Free(children);	
 }
 
 void setpolartreecoords(int * anc, int * desc, int * ndorder, int * ntip, int * rootnd, int * nnode, double * ths, double * theta, double * root) {
 	int i, j, d, ne = *nnode - 1;
 	int * ci;
-	ci = Calloc(2, int);
+	ci = R_Calloc(2, int);
 	
 	for (i = 0; i < *nnode; i++) {
 		d = 0;
@@ -147,14 +147,14 @@ void setpolartreecoords(int * anc, int * desc, int * ndorder, int * ntip, int * 
 			theta[j + ne * 2] = theta[ci[1] + ne * 0];
 		}
 	}
-	Free(ci);
+	R_Free(ci);
 }
 
 void setphylotreecoords(int * anc, int * desc, int * ndorder, double * begin, double * bl, int * ntip, int * rootnd, int * nnode, double * bar, double * xy, double * root) {
 	int i, j, d, ne = *nnode - 1;
 	//double dy = 1./(*ntip);
 	int * ci;
-	ci = Calloc(2, int);
+	ci = R_Calloc(2, int);
 	
 	int cntr = 0;
 	
@@ -210,7 +210,7 @@ void setphylotreecoords(int * anc, int * desc, int * ndorder, double * begin, do
 			bar[j + ne * 3] = xy[ci[1] + ne * 3];
 		}
 	}
-	Free(ci);
+	R_Free(ci);
 }
 
 void fetchmrca(int * anc, int * desc, int * root, int * ne, int * npair, int * t1, int * t2, int * ret) {	
@@ -224,7 +224,7 @@ void fetchmrca(int * anc, int * desc, int * root, int * ne, int * npair, int * t
 			ret[k] = t1[k];
 			continue;
 		}
-		path = Calloc(*ne, int);
+		path = R_Calloc(*ne, int);
 		cnt = 0; mrca = 0;
 		node = t1[k];
 		while (node != *root) {
@@ -261,7 +261,7 @@ void fetchmrca(int * anc, int * desc, int * root, int * ne, int * npair, int * t
 		else {
 			ret[k] = *root;
 		}
-		Free(path);
+		R_Free(path);
 	}
 }
 

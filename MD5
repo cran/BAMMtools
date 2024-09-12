@@ -1,7 +1,7 @@
-f098434682aa4146e773ade347d25d9c *DESCRIPTION
+9de6d97e5164b28fb2f2f46f8892d0ca *DESCRIPTION
 952945f9d272cd3982902cb322f180c9 *NAMESPACE
 6dc96bcb441e4baa5d370aebb2e2cacc *R/BAMMtools-data.R
-abbd4ed7f525ac9b819df3206702d90c *R/BAMMtools-package.R
+998854355f3c3f1ef063ace87186870a *R/BAMMtools-package.R
 3808ddbf58b7b344f455d1a7a5f9c51b *R/NU.branching.times.R
 375ee8688cf0e7467a083fa27dbdcfca *R/addBAMMlegend.R
 ba7fc53754917c310c43c0fe99f8ffb6 *R/addBAMMshifts.R
@@ -15,7 +15,7 @@ fa9ac81cc222f3c9284da07d325ad8b2 *R/assignColorBreaks.R
 cc3613953499a44b796905fa486ebea4 *R/bammcolors.R
 14ab222b064dff05966b4a62c868466e *R/barLegend.R
 4862c6aedd6abff3de1805271cd6b3fa *R/branchMeanRateExponential.R
-51672440e837c05514be879eec84d877 *R/cohorts.R
+3be62001f3f461fa9752c4b21dcf046d *R/cohorts.R
 9caf07d321cc246df832682b482f4c91 *R/colorMap.R
 3fb971003581b62dfec91c4e4f09af9b *R/computeBayesFactors.R
 5066a3088c362592443d2325ccf9339b *R/credibleShiftSet.R
@@ -89,12 +89,12 @@ a75aebe6580d30cb05097acf449a367b *data/traits.fishes.rda
 fc5fc624c96e944bf9e0aa67ca635941 *inst/CITATION
 b00927416a9358173b21c0ae9fb69734 *man/BAMMlikelihood.Rd
 cb56a3e63d1ff7a3fdec67d3870bdd32 *man/BAMMtools-data.Rd
-bb03e24d51359837775c3f3015c2ddf5 *man/BAMMtools.Rd
+c23c04a261a224d90a15787e6502180c *man/BAMMtools.Rd
 bfec1843fd1c10f3fae77c15c17847a1 *man/ShiftProbsTree.Rd
 f7eccb6cddfd1d19da99d3f095036b59 *man/addBAMMlegend.Rd
 af101fefbbab5588d56084270c4c43cf *man/addBAMMshifts.Rd
 5c12bde350d8300231e6e89413be672f *man/assignColorBreaks.Rd
-b87fcf346d6958747a1ac162fb805b9e *man/cohorts.Rd
+4b5242561f79a3e750a3af0044603c21 *man/cohorts.Rd
 3538483f4a1010d60102640b614e5924 *man/computeBayesFactors.Rd
 a64122a97010565ca7a6c9c35a1f7469 *man/credibleShiftSet.Rd
 d1f1aefb858597cdbd3d7fa2787bdbb5 *man/distinctShiftConfigurations.Rd
@@ -136,5 +136,5 @@ d47baae2112efdc5a5de1965c5405dc3 *man/traitDependentBAMM.Rd
 6899f042dc94058ebbf77f735b6f4eb0 *src/BAMMtools_init.c
 163c1c799f50b44886d9d1a8f97cdfd7 *src/cohort_matrix.c
 5eefe99082d44336cb7b7fcf14ee7d4f *src/dtrates.c
-16bc6cd0ee25afe4b842a16c1ce6d70e *src/jenksBrks.c
-3f21d3a7abe2f1192f0f765dabab446d *src/treetraverse.c
+2dd0d66dcd32ce467423f610a93c45c5 *src/jenksBrks.c
+58d45ecd377371aa12c81dc2cb049f30 *src/treetraverse.c

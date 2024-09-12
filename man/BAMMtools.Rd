@@ -2,6 +2,7 @@
 % Please edit documentation in R/BAMMtools-package.R
 \docType{package}
 \name{BAMMtools}
+\alias{BAMMtools-package}
 \alias{BAMMtools}
 \title{BAMMtools}
 \description{
@@ -29,6 +30,13 @@ An R package for the analysis and visualization of complex
     Sidlauskas, J. Chang, and M. E. Alfaro. 2013. Rates of speciation
     and morphological evolution are correlated across the largest
     vertebrate radiation. Nature Communications DOI: 10.1038/ncomms2958.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{http://bamm-project.org/}
+}
+
 }
 \author{
 Dan Rabosky, Mike Grundler, Pascal Title, Jonathan Mitchell,

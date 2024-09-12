@@ -26,7 +26,7 @@ cohorts(
 \item{col}{A vector of colors passed to the function \code{image}. These
 will be used to color the values in \code{x}. See documentation for
 \code{image}. If \code{col = 'temperature'}, the color palette from
-\code{\link{rich.colors}} from the gplots package will be used.}
+\code{\link[gplots]{rich.colors}} from the gplots package will be used.}
 
 \item{pal}{The palette to use if \code{use.plot.bammdata=TRUE}. See
 options documented in the help file for \code{\link{plot.bammdata}}.}

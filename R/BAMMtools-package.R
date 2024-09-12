@@ -27,7 +27,6 @@
 ##'     vertebrate radiation. Nature Communications DOI: 10.1038/ncomms2958.
 ##'
 ##' @name BAMMtools
-##' @docType package
 ##' @keywords package
 ##' @useDynLib BAMMtools
 ##' @importFrom Rcpp evalCpp
@@ -43,4 +42,4 @@
 ##'     points polygon rect segments text
 ##' @importFrom stats qchisq
 ##' @import ape
-NULL
+"_PACKAGE"
